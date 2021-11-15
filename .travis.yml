@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true leikin/react-frontend npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "react-frontend"
+  env: "Reactfrontend-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-312099423255"
+  bucket_path: "react-frontend"
+  on:
+    branch: "master"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
