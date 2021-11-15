@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t leikin/react-frontend -f dev/Dockerfile .
+
+script:
+  - docker run -e CI=true leikin/react-frontend npm run test
